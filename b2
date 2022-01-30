@@ -1,0 +1,80 @@
+#include <iostream>
+#include<string>
+#include<fstream>
+#include <vector>
+
+using namespace std;
+//ce am reusit in 15 min 
+class FurnizorE {
+
+	const int nrContract; 
+	string nume; 
+	char* denumireClient; 
+	double consumLEfectiv; 
+	double consumLEstimat; 
+	int durataContract; //luni 
+	float pretKWh; 
+
+public: 
+	//costr default 
+	FurnizorE() : nrContract(0)
+	{
+		
+		this->nume = "" ;
+		this->denumireClient =nullptr;
+		this->consumLEfectiv =0 ;
+		this->consumLEstimat =0 ;
+		this->durataContract =0 ; //luni 
+		this->pretKWh =0 ;
+	}
+
+	FurnizorE( int nrContract, 
+	string nume,
+	const char* denumireClient, 
+	double consumLEfectiv, 
+	double consumLEstimat, 
+	int durataContract, //luni 
+	float pretKWh ) : nrContract(nrContract)
+	{
+
+		this->nume = nume;
+
+		
+		this->denumireClient = new char[strlen(denumireClient )+ 1 ];
+		strcpy_s(this->denumireClient, strlen(denumireClient) + 1, denumireClient); 
+
+
+
+		this->consumLEfectiv = consumLEfectiv;
+		this->consumLEstimat = consumLEstimat;
+		this->durataContract = durataContract; //luni 
+		this->pretKWh = pretKWh;
+	}
+
+	// << 
+
+	friend ostream& operator<<(ostream &out,const FurnizorE & f )
+	{
+		out << f.nume << " " << f.denumireClient << " " << f.consumLEfectiv << f.consumLEstimat << f.durataContract << f.nrContract << f.pretKWh; 
+	
+		return out; 
+	}
+
+	void operator()(int nr )
+	{
+
+	}
+
+
+
+};
+
+int main()
+{
+	/*FurnizorE f1; 
+	cout << f1; */
+	FurnizorE f2(1, "electra", "alex ", 100, 222, 3, 432);
+	cout << f2; 
+
+	return 0; 
+}
